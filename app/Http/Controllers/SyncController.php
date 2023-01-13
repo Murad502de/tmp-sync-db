@@ -24,8 +24,14 @@ class SyncController extends Controller
 
         $lead = self::fetchLeadById(29498202);
 
+        echo "lead : status_id <br>";
         echo "<pre>";
-        print_r($lead);
+        print_r($lead['status_id']);
+        echo "</pre>";
+
+        echo "lead : pipeline_id <br>";
+        echo "<pre>";
+        print_r($lead['pipeline_id']);
         echo "</pre>";
 
         foreach ($this->leads as $lead) {
