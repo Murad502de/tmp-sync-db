@@ -22,11 +22,11 @@ class SyncController extends Controller
 
         self::$AMO_API = new amoAPIHub($authData);
 
-        // $lead = self::fetchLeadById(29498202);
+        $lead = self::fetchLeadById(29498202);
 
-        // echo "<pre>";
-        // print_r($lead);
-        // echo "</pre>";
+        echo "<pre>";
+        print_r($lead);
+        echo "</pre>";
 
         foreach ($this->leads as $lead) {
             echo "id_target_lead <br>";
