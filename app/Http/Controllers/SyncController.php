@@ -37,49 +37,35 @@ class SyncController extends Controller
         // echo "</pre>";
 
         for ($i = self::$FROM; $i < self::$TO; $i++) {
-            $targetLead = self::fetchLeadById((int) $this->leads[$i]['id_target_lead']);
-
             echo "target_lead_id <br>";
             echo "<pre>";
             print_r($this->leads[$i]['id_target_lead']);
             echo "</pre><br>";
-
-            if ($targetLead) {
-                echo "target_lead_status_id <br>";
-                echo "<pre>";
-                print_r($targetLead['status_id']);
-                echo "</pre><br>";
-
-                echo "target_lead_pipeline_id <br>";
-                echo "<pre>";
-                print_r($targetLead['pipeline_id']);
-                echo "</pre><br>";
-            } else {
-                echo "targetLead not found: " . $this->leads[$i]['id_target_lead'] . " <br>";
-            }
-
-            $relatedLead = self::fetchLeadById((int) $this->leads[$i]['related_lead']);
 
             echo "related_lead_id <br>";
             echo "<pre>";
             print_r($this->leads[$i]['related_lead']);
             echo "</pre><br>";
 
-            if ($relatedLead) {
-                echo "related_lead_status_id <br>";
-                echo "<pre>";
-                print_r($relatedLead['status_id']);
-                echo "</pre><br>";
+            $targetLead = self::fetchLeadById((int) $this->leads[$i]['id_target_lead']);
+            $targetLeadId = $targetLead ?? (int) $targetLead['id'];
+            $targetLeadStatusId = $targetLead ?? (int) $targetLead['status_id'];
+            $targetLeadPipelineId = $targetLead ?? (int) $targetLead['pipeline_id'];
 
-                echo "related_lead_pipeline_id <br>";
-                echo "<pre>";
-                print_r($relatedLead['pipeline_id']);
-                echo "</pre><br>";
-            } else {
-                echo "relatedLead not found: " . $this->leads[$i]['related_lead'] . " <br>";
-            }
+            echo "targetLeadId: " . $targetLeadId . "<br>";
+            echo "targetLeadStatusId: " . $targetLeadStatusId . "<br>";
+            echo "targetLeadPipelineId: " . $targetLeadPipelineId . "<br>";
 
-            echo "<br>=========================<br>";
+            $relatedLead = self::fetchLeadById((int) $this->leads[$i]['related_lead']);
+            $relatedLeadId = $relatedLead ?? (int) $relatedLead['id'];
+            $relatedLeadStatusId = $relatedLead ?? (int) $relatedLead['status_id'];
+            $relatedLeadPipelineId = $relatedLead ?? (int) $relatedLead['pipeline_id'];
+
+            echo "relatedLeadId: " . $relatedLeadId . "<br>";
+            echo "relatedLeadStatusId: " . $relatedLeadStatusId . "<br>";
+            echo "relatedLeadPipelineId: " . $relatedLeadPipelineId . "<br>";
+
+            echo "=========================<br>";
         }
 
         return;
