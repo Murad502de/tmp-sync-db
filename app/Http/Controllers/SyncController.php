@@ -10,8 +10,8 @@ use Illuminate\Http\Response;
 class SyncController extends Controller
 {
     private static $AMO_API = null;
-    private static $FROM    = 200;
-    private static $TO      = 250;
+    private static $FROM    = 250;
+    private static $TO      = 300;
 
     // tottal 816
 
