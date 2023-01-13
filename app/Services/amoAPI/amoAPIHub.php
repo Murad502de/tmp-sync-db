@@ -176,7 +176,7 @@ class amoAPIHub
         print_r($id);
         echo "</pre>";
 
-        $url = "https://" . config('services.amoCRM.subdomain') . ".amocrm.ru/api/v4/leads/$id?with=contacts";
+        $url = "https://usikuban.amocrm.ru/api/v4/leads/$id?with=contacts";
 
         echo "url <br>";
         echo "<pre>";
