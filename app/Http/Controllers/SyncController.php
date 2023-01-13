@@ -26,27 +26,32 @@ class SyncController extends Controller
 
         echo "lead : status_id <br>";
         echo "<pre>";
-        print_r($lead['body']['status_id']);
+        print_r($lead);
         echo "</pre>";
 
-        echo "lead : pipeline_id <br>";
-        echo "<pre>";
-        print_r($lead['body']['pipeline_id']);
-        echo "</pre>";
+        // echo "lead : status_id <br>";
+        // echo "<pre>";
+        // print_r($lead['body']['status_id']);
+        // echo "</pre>";
 
-        foreach ($this->leads as $lead) {
-            echo "id_target_lead <br>";
-            echo "<pre>";
-            print_r($lead['id_target_lead']);
-            echo "</pre><br>";
+        // echo "lead : pipeline_id <br>";
+        // echo "<pre>";
+        // print_r($lead['body']['pipeline_id']);
+        // echo "</pre>";
 
-            echo "related_lead <br>";
-            echo "<pre>";
-            print_r($lead['related_lead']);
-            echo "</pre><br>";
+        // foreach ($this->leads as $lead) {
+        //     echo "id_target_lead <br>";
+        //     echo "<pre>";
+        //     print_r($lead['id_target_lead']);
+        //     echo "</pre><br>";
 
-            echo "<br>";
-        }
+        //     echo "related_lead <br>";
+        //     echo "<pre>";
+        //     print_r($lead['related_lead']);
+        //     echo "</pre><br>";
+
+        //     echo "<br>";
+        // }
 
         return;
     }
