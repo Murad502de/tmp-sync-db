@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lead;
 use App\Models\Services\amoCRM;
 use App\Services\amoAPI\amoAPIHub;
 use Illuminate\Http\Response;
@@ -9,8 +10,8 @@ use Illuminate\Http\Response;
 class SyncController extends Controller
 {
     private static $AMO_API = null;
-    private static $FROM = 0;
-    private static $TO = 50;
+    private static $FROM    = 0;
+    private static $TO      = 50;
 
     // tottal 816
 
@@ -18,23 +19,7 @@ class SyncController extends Controller
     {
         $authData = amoCRM::getAuthData();
 
-        // echo "<pre>";
-        // print_r($authData);
-        // echo "</pre>";
-
         self::$AMO_API = new amoAPIHub($authData);
-
-        // $lead = self::fetchLeadById(29498202);
-
-        // echo "lead : status_id <br>";
-        // echo "<pre>";
-        // print_r($lead['status_id']);
-        // echo "</pre>";
-
-        // echo "lead : pipeline_id <br>";
-        // echo "<pre>";
-        // print_r($lead['pipeline_id']);
-        // echo "</pre>";
 
         for ($i = self::$FROM; $i < self::$TO; $i++) {
             echo "target_lead_id <br>";
@@ -47,18 +32,18 @@ class SyncController extends Controller
             print_r($this->leads[$i]['related_lead']);
             echo "</pre><br>";
 
-            $targetLead = self::fetchLeadById((int) $this->leads[$i]['id_target_lead']);
-            $targetLeadId = $targetLead ? (int) $targetLead['id'] : 0;
-            $targetLeadStatusId = $targetLead ? (int) $targetLead['status_id'] : 0;
+            $targetLead           = self::fetchLeadById((int) $this->leads[$i]['id_target_lead']);
+            $targetLeadId         = $targetLead ? (int) $targetLead['id'] : 0;
+            $targetLeadStatusId   = $targetLead ? (int) $targetLead['status_id'] : 0;
             $targetLeadPipelineId = $targetLead ? (int) $targetLead['pipeline_id'] : 0;
 
             echo "targetLeadId: " . $targetLeadId . "<br>";
             echo "targetLeadStatusId: " . $targetLeadStatusId . "<br>";
             echo "targetLeadPipelineId: " . $targetLeadPipelineId . "<br>";
 
-            $relatedLead = self::fetchLeadById((int) $this->leads[$i]['related_lead']);
-            $relatedLeadId = $relatedLead ? (int) $relatedLead['id'] : 0;
-            $relatedLeadStatusId = $relatedLead ? (int) $relatedLead['status_id'] : 0;
+            $relatedLead           = self::fetchLeadById((int) $this->leads[$i]['related_lead']);
+            $relatedLeadId         = $relatedLead ? (int) $relatedLead['id'] : 0;
+            $relatedLeadStatusId   = $relatedLead ? (int) $relatedLead['status_id'] : 0;
             $relatedLeadPipelineId = $relatedLead ? (int) $relatedLead['pipeline_id'] : 0;
 
             echo "relatedLeadId: " . $relatedLeadId . "<br>";
@@ -67,6 +52,24 @@ class SyncController extends Controller
 
             if ($targetLeadId && $relatedLeadId) {
                 echo "save <br>";
+
+                $basicLeadModel = Lead::create([
+                    'amo_id'          => $targetLeadId,
+                    'amo_status_id'   => $targetLeadStatusId,
+                    'amo_pipeline_id' => $targetLeadPipelineId,
+                    'is_mortgage'     => 0,
+                ]);
+                $mortgageLeadModel = Lead::create([
+                    'amo_id'          => $relatedLeadId,
+                    'amo_status_id'   => $relatedLeadStatusId,
+                    'amo_pipeline_id' => $relatedLeadPipelineId,
+                    'is_mortgage'     => 1,
+                    'lead_id'         => $basicLeadModel->id,
+                ]);
+
+                $basicLeadModel->update([
+                    'lead_id' => $mortgageLeadModel ? $mortgageLeadModel->id : null,
+                ]);
             } else {
                 echo "dont save <br>";
             }
