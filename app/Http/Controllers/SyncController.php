@@ -41,7 +41,7 @@ class SyncController extends Controller
 
             echo "target_lead_id <br>";
             echo "<pre>";
-            print_r($this->leads[$i]['target_lead_id']);
+            print_r($this->leads[$i]['id_target_lead']);
             echo "</pre><br>";
 
             if ($targetLead) {
