@@ -16,9 +16,9 @@ class SyncController extends Controller
 
         $authData = amoCRM::getAuthData();
 
-        echo "<pre>";
-        print_r($authData);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($authData);
+        // echo "</pre>";
 
         self::$AMO_API = new amoAPIHub($authData);
 
@@ -39,7 +39,7 @@ class SyncController extends Controller
             print_r($lead['related_lead']);
             echo "</pre><br>";
 
-            echo "<br><br><br>";
+            echo "<br><br>";
         }
 
         return;
