@@ -36,6 +36,11 @@ class SyncController extends Controller
     {
         $findLeadByIdResponse = self::$AMO_API->findLeadById($id);
 
+        echo "findLeadByIdResponse <br>";
+        echo "<pre>";
+        print_r($findLeadByIdResponse);
+        echo "</pre>";
+
         if ($findLeadByIdResponse['code'] !== Response::HTTP_OK) {
             echo 'lead not found by id: ' . $id . '<br>';
 
