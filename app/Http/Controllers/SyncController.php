@@ -14,7 +14,13 @@ class SyncController extends Controller
     {
         echo "SyncController/handle<br>";
 
-        self::$AMO_API = new amoAPIHub(amoCRM::getAuthData());
+        $authData = amoCRM::getAuthData();
+
+        echo "<pre>";
+        print_r($authData);
+        echo "</pre>";
+
+        self::$AMO_API = new amoAPIHub($authData);
 
         $lead = self::fetchLeadById(29498202);
 
