@@ -38,6 +38,12 @@ class SyncController extends Controller
 
         for ($i = self::$FROM; $i < self::$TO; $i++) {
             $targetLead = self::fetchLeadById((int) $this->leads[$i]['id_target_lead']);
+
+            echo "target_lead_id <br>";
+            echo "<pre>";
+            print_r($this->leads[$i]['target_lead_id']);
+            echo "</pre><br>";
+
             if ($targetLead) {
                 echo "target_lead_status_id <br>";
                 echo "<pre>";
@@ -53,6 +59,12 @@ class SyncController extends Controller
             }
 
             $relatedLead = self::fetchLeadById((int) $this->leads[$i]['related_lead']);
+
+            echo "related_lead_id <br>";
+            echo "<pre>";
+            print_r($this->leads[$i]['related_lead']);
+            echo "</pre><br>";
+
             if ($relatedLead) {
                 echo "related_lead_status_id <br>";
                 echo "<pre>";
@@ -67,7 +79,7 @@ class SyncController extends Controller
                 echo "relatedLead not found: " . $this->leads[$i]['related_lead'] . " <br>";
             }
 
-            echo "<br>";
+            echo "<br>=========================<br>";
         }
 
         return;
