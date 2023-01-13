@@ -48,18 +48,18 @@ class SyncController extends Controller
             echo "</pre><br>";
 
             $targetLead = self::fetchLeadById((int) $this->leads[$i]['id_target_lead']);
-            $targetLeadId = $targetLead ?? (int) $targetLead['id'];
-            $targetLeadStatusId = $targetLead ?? (int) $targetLead['status_id'];
-            $targetLeadPipelineId = $targetLead ?? (int) $targetLead['pipeline_id'];
+            $targetLeadId = $targetLead ? (int) $targetLead['id'] : null;
+            $targetLeadStatusId = $targetLead ? (int) $targetLead['status_id'] : null;
+            $targetLeadPipelineId = $targetLead ? (int) $targetLead['pipeline_id'] : null;
 
             echo "targetLeadId: " . $targetLeadId . "<br>";
             echo "targetLeadStatusId: " . $targetLeadStatusId . "<br>";
             echo "targetLeadPipelineId: " . $targetLeadPipelineId . "<br>";
 
             $relatedLead = self::fetchLeadById((int) $this->leads[$i]['related_lead']);
-            $relatedLeadId = $relatedLead ?? (int) $relatedLead['id'];
-            $relatedLeadStatusId = $relatedLead ?? (int) $relatedLead['status_id'];
-            $relatedLeadPipelineId = $relatedLead ?? (int) $relatedLead['pipeline_id'];
+            $relatedLeadId = $relatedLead ? (int) $relatedLead['id'] : null;
+            $relatedLeadStatusId = $relatedLead ? (int) $relatedLead['status_id'] : null;
+            $relatedLeadPipelineId = $relatedLead ? (int) $relatedLead['pipeline_id'] : null;
 
             echo "relatedLeadId: " . $relatedLeadId . "<br>";
             echo "relatedLeadStatusId: " . $relatedLeadStatusId . "<br>";
