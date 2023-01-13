@@ -171,7 +171,17 @@ class amoAPIHub
 
     public function findLeadById($id)
     {
+        echo "id <br>";
+        echo "<pre>";
+        print_r($id);
+        echo "</pre>";
+
         $url = "https://" . config('services.amoCRM.subdomain') . ".amocrm.ru/api/v4/leads/$id?with=contacts";
+
+        echo "url <br>";
+        echo "<pre>";
+        print_r($url);
+        echo "</pre>";
 
         try {
             $response = $this->client->sendRequest(
