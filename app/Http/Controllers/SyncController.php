@@ -22,31 +22,53 @@ class SyncController extends Controller
 
         self::$AMO_API = new amoAPIHub($authData);
 
-        $lead = self::fetchLeadById(29498202);
+        // $lead = self::fetchLeadById(29498202);
 
-        echo "lead : status_id <br>";
-        echo "<pre>";
-        print_r($lead['status_id']);
-        echo "</pre>";
+        // echo "lead : status_id <br>";
+        // echo "<pre>";
+        // print_r($lead['status_id']);
+        // echo "</pre>";
 
-        echo "lead : pipeline_id <br>";
-        echo "<pre>";
-        print_r($lead['pipeline_id']);
-        echo "</pre>";
+        // echo "lead : pipeline_id <br>";
+        // echo "<pre>";
+        // print_r($lead['pipeline_id']);
+        // echo "</pre>";
 
-        // foreach ($this->leads as $lead) {
-        //     echo "id_target_lead <br>";
-        //     echo "<pre>";
-        //     print_r($lead['id_target_lead']);
-        //     echo "</pre><br>";
+        foreach ($this->leads as $lead) {
+            $targetLead = self::fetchLeadById((int) $lead['id_target_lead']);
 
-        //     echo "related_lead <br>";
-        //     echo "<pre>";
-        //     print_r($lead['related_lead']);
-        //     echo "</pre><br>";
+            if ($targetLead) {
+                echo "target_lead_status_id <br>";
+                echo "<pre>";
+                print_r($targetLead['status_id']);
+                echo "</pre><br>";
 
-        //     echo "<br>";
-        // }
+                echo "target_lead_pipeline_id <br>";
+                echo "<pre>";
+                print_r($targetLead['pipeline_id']);
+                echo "</pre><br>";
+            } else {
+                echo "targetLead not found: " . $lead['id_target_lead'] . " <br>";
+            }
+
+            $relatedLead = self::fetchLeadById((int) $lead['related_lead']);
+
+            if ($relatedLead) {
+                echo "related_lead_status_id <br>";
+                echo "<pre>";
+                print_r($relatedLead['status_id']);
+                echo "</pre><br>";
+
+                echo "related_lead_pipeline_id <br>";
+                echo "<pre>";
+                print_r($relatedLead['pipeline_id']);
+                echo "</pre><br>";
+            } else {
+                echo "relatedLead not found: " . $lead['related_lead'] . " <br>";
+            }
+
+            echo "<br>";
+        }
 
         return;
     }
