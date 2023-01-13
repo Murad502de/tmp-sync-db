@@ -65,6 +65,12 @@ class SyncController extends Controller
             echo "relatedLeadStatusId: " . $relatedLeadStatusId . "<br>";
             echo "relatedLeadPipelineId: " . $relatedLeadPipelineId . "<br>";
 
+            if ($targetLeadId && $relatedLeadId) {
+                echo "save <br>";
+            } else {
+                echo "dont save <br>";
+            }
+
             echo "=========================<br>";
         }
 
