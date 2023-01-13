@@ -15,3 +15,6 @@ use App\Http\Controllers\SyncController;
 */
 
 Route::get('/', [SyncController::class, 'handle']);
+Route::get('/info', function () {
+    phpinfo();
+});
