@@ -12,7 +12,7 @@ class SyncController extends Controller
 
     public function handle()
     {
-        echo "SyncController/handle<br>";
+        // echo "SyncController/handle<br>";
 
         $authData = amoCRM::getAuthData();
 
@@ -39,7 +39,7 @@ class SyncController extends Controller
             print_r($lead['related_lead']);
             echo "</pre><br>";
 
-            echo "<br><br>";
+            echo "<br>";
         }
 
         return;
